@@ -4,6 +4,7 @@
 
     use Nosco\Cashflows\TransportInterface;
     use Nosco\Cashflows\Transport\Http as HttpTransport;
+    use Nosco\Cashflows\AbstractRequest as RequestInterface;
     use Nosco\Cashflows\Request;
 
     class Client
@@ -70,6 +71,22 @@
         }
 
         /**
+         * Apply Auth Settings
+         *
+         * @access protected
+         * @param Nosco\Cashflows\AbstractRequest $request
+         * @return Nosco\Cashflows\AbstractRequest
+         */
+        protected function applyAuthSettings(RequestInterface $request)
+        {
+            $request->attributes([
+                'auth_id' => $this->authId,
+                'auth_pass' => $this->authPass,
+            ]);
+            return $request;
+        }
+
+        /**
          * New Payment Request
          *
          * @access public
@@ -78,11 +95,7 @@
         public function paymentRequest()
         {
             $request = new Request\Payment;
-            $request->attributes([
-                'auth_id' => $this->authId,
-                'auth_pass' => $this->authPass,
-            ]);
-            return $request;
+            return $this->applyAuthSettings($request);
         }
 
         /**
@@ -94,10 +107,7 @@
         public function mobilePaymentRequest()
         {
             $request = new Request\Payment\Mobile;
-            $request->attributes([
-                'auth_id' => $this->authId,
-                'auth_pass' => $this->authPass,
-            ]);
+            return $this->applyAuthSettings($request);
         }
 
         /**
@@ -109,10 +119,7 @@
         public function continuousPaymentRequest()
         {
             $request = new Request\Payment\Continuous;
-            $request->attributes([
-                'auth_id' => $this->authId,
-                'auth_pass' => $this->authPass,
-            ]);
+            return $this->applyAuthSettings($request);
         }
 
         /**
@@ -124,10 +131,7 @@
         public function alternativeRecurringPaymentRequest()
         {
             $request = new Request\Payment\AlternativeRecurring;
-            $request->attributes([
-                'auth_id' => $this->authId,
-                'auth_pass' => $this->authPass,
-            ]);
+            return $this->applyAuthSettings($request);
         }
 
         /**
@@ -139,10 +143,7 @@
         public function voidRequest()
         {
             $request = new Request\VoidTransaction;
-            $request->attributes([
-                'auth_id' => $this->authId,
-                'auth_pass' => $this->authPass,
-            ]);
+            return $this->applyAuthSettings($request);
         }
 
         /**
@@ -154,10 +155,7 @@
         public function refundRequest()
         {
             $request = new Request\Refund;
-            $request->attributes([
-                'auth_id' => $this->authId,
-                'auth_pass' => $this->authPass,
-            ]);
+            return $this->applyAuthSettings($request);
         }
 
         /**
@@ -169,10 +167,7 @@
         public function verificationRequest()
         {
             $request = new Request\Verification;
-            $request->attributes([
-                'auth_id' => $this->authId,
-                'auth_pass' => $this->authPass,
-            ]);
+            return $this->applyAuthSettings($request);
         }
 
     }
