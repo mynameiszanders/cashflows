@@ -1,0 +1,32 @@
+{
+    "name": "mynameiszanders/cashflows",
+    "type": "library",
+    "description": "Cashflows PHP API Library.",
+    "version": "0.1-alpha",
+    "keywords": ["cashflows", "api"],
+    "homepage": "https://github.com/mynameiszanders/cashflows",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zander Baldwin",
+            "email": "mynameiszanders@gmail.com",
+            "homepage": "http://mynameis.zande.rs"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/mynameiszanders/cashflows/issues"
+    },
+    "require": {
+        "guzzlehttp/guzzle": "4.1.7",
+        "respect/validation": "0.6.1",
+        "php": ">=5.3.7"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.2.0"
+    },
+    "autoload": {
+        "psr-4" : {
+            "Nosco\\Cashflows\\" : "src/"
+        }
+    }
+}
