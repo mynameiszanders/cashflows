@@ -28,11 +28,11 @@ Example Usage
         var_dump($response);
 
         # object(Nosco\Response)[1]
-        #   public 'transactionId' => string '01S00001722' (length=11)
-        #   public 'cvvCheck' => int 2
-        #   public 'addressCheck' => int 3
-        #   public 'postcodeCheck' => int 2
-        #   public 'authCode' => string '031971' (length=6)
+        #   protected 'transactionId' => string '01S00001722' (length=11)
+        #   protected 'cvvCheck' => int 2
+        #   protected 'addressCheck' => int 3
+        #   protected 'postcodeCheck' => int 2
+        #   protected 'authCode' => string '031971' (length=6)
 
     }
     // Request Exceptions (validation, connectivity, 400 status codes, etc):
@@ -42,8 +42,8 @@ Example Usage
     // Any other non-caught request exceptions.
     catch(Nosco\Cashflows\Exceptions\RequestException $e) {}
     // Response Exceptions (invalid requests, errors, blocked/declined, etc):
-    // NB. AuthorisationBlocked is an extension of NotAuthorised.
-    catch(Nosco\Cashflows\Exceptions\AuthorisationBlockedException $e) {}
+    catch(Nosco\Cashflows\Exceptions\NotAuthorised\AuthorisationBlockedException $e) {}
+    catch(Nosco\Cashflows\Exceptions\NotAuthorised\AuthorisationDeclinedException $e) {}
     catch(Nosco\Cashflows\Exceptions\NotAuthorisedException $e) {}
     catch(Nosco\Cashflows\Exceptions\CashflowsSystemException $e) {}
     // Any other non-caught response exceptions.
