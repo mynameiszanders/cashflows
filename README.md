@@ -11,17 +11,14 @@ Example Usage
 
     use Nosco\Cashflows\Client as CashflowsClient;
 
-    CashflowsClient::setTransport(new Nosco\Cashflows\Transport\Guzzle);
-    $cashflows = new CashflowsClient;
+    $cashflows = new CashflowsClient('authorisation_id', 'p@55w0rd');
     $request = $cashflows->paymentRequest();
-    $request->fields = [
-        'auth_id' => 1234,
-        'auth_pass' => 'p@55w0rd',
+    $request->attributes([
         'card_num' => '1234567890123456',
         'card_cvv' => '123',
         'card_expiry' => new \Date('2017-03'),
         ...
-    ];
+    ]);
 
     try {
         $response = $request->send();
@@ -37,17 +34,16 @@ Example Usage
     }
     // Request Exceptions (validation, connectivity, 400 status codes, etc):
     catch(Nosco\Cashflows\Exceptions\ValidationException $e) {}
-    catch(Nosco\Cashflows\Exceptions\InvalidRequestException $e) {}
     catch(Nosco\Cashflows\Exceptions\TransportException $e) {}
     // Any other non-caught request exceptions.
     catch(Nosco\Cashflows\Exceptions\RequestException $e) {}
     // Response Exceptions (invalid requests, errors, blocked/declined, etc):
-    catch(Nosco\Cashflows\Exceptions\NotAuthorised\AuthorisationBlockedException $e) {}
-    catch(Nosco\Cashflows\Exceptions\NotAuthorised\AuthorisationDeclinedException $e) {}
-    catch(Nosco\Cashflows\Exceptions\NotAuthorisedException $e) {}
-    catch(Nosco\Cashflows\Exceptions\CashflowsSystemException $e) {}
-    // Any other non-caught response exceptions.
+    catch(Nosco\Cashflows\Exceptions\Response\InvalidResponseException $e) {}
+    catch(Nosco\Cashflows\Exceptions\Response\NotAuthorised\AuthorisationBlockedException $e) {}
+    catch(Nosco\Cashflows\Exceptions\Response\NotAuthorised\AuthorisationDeclinedException $e) {}
+    catch(Nosco\Cashflows\Exceptions\Response\NotAuthorisedException $e) {}
     catch(Nosco\Cashflows\Exceptions\ResponseException $e) {}
+    catch(Nosco\Cashflows\Exceptions\CashflowsSystemException $e) {}
     // Cashflows catch-all exception:
     catch(Nosco\Cashflows\Exceptions\Exception $e) {}
 ```
