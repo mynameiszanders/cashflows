@@ -16,15 +16,14 @@
         protected $cvvCheck = 0;
         protected $addressCheck = 0;
         protected $postcodeCheck = 0;
-        protected $authCode;
-        protected $message = 'Authorised';
 
-        public function __construct($transactionId, $checks, $authCode)
+        public function __construct($transactionId, $checks, $authCode, $message)
         {
             $this->transactionId = $transactionId;
-            $this->authCode = $authCode;
             $checks = str_split($checks);
             list($this->cvvCheck, $this->addressCheck, $this->postcodeCheck) = $checks;
+            $this->code = $authCode;
+            $this->message = $message;
         }
 
         /**
