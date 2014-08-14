@@ -64,7 +64,7 @@
          * @param string $authPass
          * @return void
          */
-        public function __constructor($authId, $authPass)
+        public function __construct($authId, $authPass)
         {
             $this->authId = $authId;
             $this->authPass = $authPass;
