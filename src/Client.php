@@ -15,7 +15,7 @@
          *
          * @const BASEAPI
          */
-        const BASEAPI = 'https://secure.cashflows.com/gateway/remote';
+        const BASEAPI = 'https://secure.cashflows.com/gateway/';
 
         protected $authId;
         protected $authPass;
