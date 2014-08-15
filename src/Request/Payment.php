@@ -2,16 +2,18 @@
 
     namespace Nosco\Cashflows\Request;
 
-    use Nosco\Cashflows\Client;
     use Nosco\Cashflows\AbstractRequest;
     use Respect\Validation\Validator as V;
 
     class Payment extends AbstractRequest
     {
 
-        const VERB = 'post';
-        const API_URI = 'remote';
-
+        /**
+         * Get Fields Definitions
+         *
+         * @access public
+         * @return array
+         */
         protected function getFieldDefinitions()
         {
             return [
@@ -20,7 +22,7 @@
                 'card_num'      => ['Card Number',                                      V::notEmpty()->string()->length(16, 16)->digit()->noWhitespace()->creditCard() ],
                 'card_cvv'      => ['Card CVV',                                         V::notEmpty()->string()->length(3, 3)->digit()->noWhitespace()                 ],
                 'card_start'    => ['Card Start Date',                                  V::date('my')                                                                  ],
-                'card_issue'    => ['Card Issue Number',                                V::string()  ->length(null, 2)->digit()->noWhitespace()                        ],
+                'card_issue'    => ['Card Issue Number',                                V::string()  ->length(null, 2)->digit()->noWhitespace(),                    '' ],
                 'card_expiry'   => ['Card Expiry Date',                                 V::notEmpty()->date('my')                                                      ],
                 'cust_name'     => ['Customer Name',                                    V::notEmpty()->string()                                                        ],
                 'cust_address'  => ['Customer Address',                                 V::notEmpty()->string()                                                        ],
@@ -34,17 +36,23 @@
                 'tran_amount'   => ['Transaction Amount',                               V::notEmpty()->float()                                                         ],
                 'tran_currency' => ['Transaction Currency',                             V::notEmpty()->string() ->length(3, 3)->alpha()->noWhitespace()                ],
                 'tran_testmode' => ['Test Mode',                                        V::notEmpty()->bool(),                                                   false ],
-                'tran_class'    => ['Transaction Class',                                V::string()                                                                    ],
                 'acs_eci'       => ['Access Control Server (ECI)',                      V::int()                                                                       ],
-                'acs_cavv'      => ['Cardholder Authentication Verification Value',     V::string()  ->length(28, 28)                                                  ],
-                'acs_xid'       => ['Access Control Server (Unique Authentication ID)', V::string()  ->length(28, 28)                                                  ],
+                'acs_cavv'      => ['Cardholder Authentication Verification Value',     V::string()  ->length(28, 28),                                              '' ],
+                'acs_xid'       => ['Access Control Server (Unique Authentication ID)', V::string()  ->length(28, 28),                                              '' ],
             ];
         }
 
+        /**
+         * Get Additional Fields
+         *
+         * @access public
+         * @return void
+         */
         protected function getAdditionalFields()
         {
             return [
                 'tran_type' => 'sale',
+                'tran_class' => 'ecom',
             ];
         }
 
