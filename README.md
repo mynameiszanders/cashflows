@@ -1,7 +1,7 @@
 Cashflows PHP API Library
 =========================
 
-PHP library for communicating with Cashflows' API, by [Nosco Systems](https://noscosystems.com).
+PHP library for communicating with Cashflows' API, by [Nosco Systems](https://noscosystems.com), version `1.0.0-RC1`.
 
 Example Usage
 -------------

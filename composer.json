@@ -2,7 +2,7 @@
     "name": "mynameiszanders/cashflows",
     "type": "library",
     "description": "Cashflows PHP API Library.",
-    "version": "0.1-alpha",
+    "version": "1.0.0-rc1",
     "keywords": ["cashflows", "api"],
     "homepage": "https://github.com/mynameiszanders/cashflows",
     "license": "MIT",
