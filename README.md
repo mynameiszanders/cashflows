@@ -72,7 +72,7 @@ Example Usage
         $response = $request->send();
         var_dump($response);
 
-        # object(Nosco\Response)[1]
+        # object(Nosco\Cashflows\Response\Authorised)[1]
         #   protected 'transactionId' => string '01S00001722' (length=11)
         #   protected 'cvvCheck' => int 2
         #   protected 'addressCheck' => int 3
