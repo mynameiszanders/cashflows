@@ -40,12 +40,12 @@
         {
             $post = self::$guzzle->createRequest('POST', $url, ['body' => $fields]);
             try {
-                $response = $self::$guzzle->send($post);
+                $response = self::$guzzle->send($post);
             }
             catch(GuzzleHttp\Exception\TransferException $e) {
                 throw new TransportException('The transport adapter encountered an error: "' . $e->getMessage() . '"', $e->getCode(), $e);
             }
-            $responseParts = preg_split('/\\s*\\\\|\\s*/', (string) $response->getBody(), -1, PREG_SPLIT_NO_EMPTY);
+            $responseParts = preg_split('/\\s*\\|\\s*/', trim((string) $response->getBody()), -1, PREG_SPLIT_NO_EMPTY);
             if(is_array($responseParts) && count($responseParts) === 5) {
                 switch($responseParts[0]) {
                     case 'A':
@@ -61,19 +61,27 @@
                         throw new Exceptions\Response\NotAuthorised\DeclinedException($responseParts[1], $responseParts[2], $responseParts[3], $responseParts[4]);
                         break;
                     case 'V':
-                        throw new Exceptions\Response\InvalidRequestException($responseParts[1], $responseParts[2], $responseParts[3], $responseParts[4]);
+                        throw new Exceptions\Response\NotAuthorised\InvalidRequestException($responseParts[1], $responseParts[2], $responseParts[3], $responseParts[4]);
                         break;
                     case 'S':
                         throw new Exceptions\CashflowsSystemException;
                         break;
                     default:
-                        throw new Exceptions\Response\InvalidResponseException;
+                        throw new Exceptions\Response\InvalidResponseException(
+                            'An unrecongnised response code was returned from Cashflows.',
+                            $response->getStatusCode(),
+                            (string) $response->getBody()
+                        );
                         break;
                 }
                 return new AuthorisedResponse($responseParts[1], $responseParts[2], $responseParts[3]);
             }
             else {
-                throw new Exceptions\Response\InvalidResponseException;
+                throw new Exceptions\Response\InvalidResponseException(
+                    'An unrecognised response format was returned from Cashflows.',
+                    $response->getStatusCode(),
+                    (string) $response->getBody()
+                );
             }
         }
 
