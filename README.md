@@ -3,6 +3,50 @@ Cashflows PHP API Library
 
 PHP library for communicating with Cashflows' API, for [Nosco Systems](https://noscosystems.com) by [Zander Baldwin](https://github.com/mynameiszanders), version `1.0.0-RC1`.
 
+Available API Requests
+----------------------
+
+Although each request object can be instantiated stand-alone from its respective class, it's easier to create it through
+a dedicated method in the Client (`Nosco\Cashflows\Client`) object - which automatically sets the Auth ID and password
+for each request.
+
+The available dedicated methods, and their corresponding request classes, are:
+
+- `paymentRequest`, `Nosco\Cashflows\Request\Payment`.
+- `mobilePaymentRequest`, `Nosco\Cashflows\Request\Payment\Mobile`.
+- `continuousPaymentRequest`, `Nosco\Cashflows\Request\Payment\Continuous`.
+- `alternativeRecurringPaymentRequest`, `Nosco\Cashflows\Request\Payment\AlternativeRecurring`.
+- `voidRequest`, `Nosco\Cashflows\Request\Void`.
+- `refundRequest`, `Nosco\Cashflows\Request\Refund`.
+- `verificationRequest`, `Nosco\Cashflows\Request\Verification`.
+
+Sending Requests
+----------------
+
+Each request object has a set of attributes that must be filled-in before the request can be sent, and these are
+documented in Cashflows' *Remote API Integration Guide* (version 1.7 April 2014).
+
+The attributes can be entered using the `attribute()` method of the request object, and the API call can be sent with
+the `send()` method. Once an API call is successful, an `Nosco\Cashflows\Response\Authorised` response object is
+returned from the `send()` method.
+
+Catching Errors
+---------------
+
+The following is the Exception tree; only exception classes in leaf nodes are thrown, all others are for group-catching.
+
+- `Nosco\Cashflows\Exceptions\BaseException`
+  - `Nosco\Cashflows\Exceptions\ValidationException`
+  - `Nosco\Cashflows\Exceptions\TransportException`
+  - `Nosco\Cashflows\Exceptions\CashflowsSystemException`
+  - `Nosco\Cashflows\Exceptions\ResponseException`
+    - `Nosco\Cashflows\Exceptions\Response\InvalidResponseException`
+    - `Nosco\Cashflows\Exceptions\Response\NotAuthorisedException`
+      - `Nosco\Cashflows\Exceptions\Response\NotAuthorised\BlockedException`
+      - `Nosco\Cashflows\Exceptions\Response\NotAuthorised\CancelledException`
+      - `Nosco\Cashflows\Exceptions\Response\NotAuthorised\DeclinedException`
+      - `Nosco\Cashflows\Exceptions\Response\NotAuthorised\InvalidRequestException`
+
 Example Usage
 -------------
 
@@ -15,9 +59,9 @@ Example Usage
     $cashflows = new CashflowsClient('authorisation_id', 'p@55w0rd');
     $request = $cashflows->paymentRequest();
     $request->attributes([
-        'card_num' => '1234567890123456',
+        'card_num' => '1234567890123452',
         'card_cvv' => '123',
-        'card_expiry' => new \Date('2017-03'),
+        'card_expiry' => '0317',
         ...
     ]);
 
