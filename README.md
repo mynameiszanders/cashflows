@@ -12,13 +12,16 @@ for each request.
 
 The available dedicated methods, and their corresponding request classes, are:
 
-- `paymentRequest`, `Nosco\Cashflows\Request\Payment`.
-- `mobilePaymentRequest`, `Nosco\Cashflows\Request\Payment\Mobile`.
-- `continuousPaymentRequest`, `Nosco\Cashflows\Request\Payment\Continuous`.
-- `alternativeRecurringPaymentRequest`, `Nosco\Cashflows\Request\Payment\AlternativeRecurring`.
-- `voidRequest`, `Nosco\Cashflows\Request\Void`.
-- `refundRequest`, `Nosco\Cashflows\Request\Refund`.
-- `verificationRequest`, `Nosco\Cashflows\Request\Verification`.
+| Dedicated Method                       | Request Object Class                                                        |
+|----------------------------------------|-----------------------------------------------------------------------------|
+|`paymentRequest`                        | `Nosco\Cashflows\Request\Payment`.                                          |
+|`mobilePaymentRequest`                  | `Nosco\Cashflows\Request\Payment\Mobile`.                                   |
+|`continuousPaymentRequest`              | `Nosco\Cashflows\Request\Payment\Continuous`.                               |
+|`alternativeRecurringPaymentRequest`    | `Nosco\Cashflows\Request\Payment\AlternativeRecurring`.                     |
+|`voidRequest`                           | `Nosco\Cashflows\Request\Void`.                                             |
+|`refundRequest`                         | `Nosco\Cashflows\Request\Refund`.                                           |
+|`verificationRequest`                   | `Nosco\Cashflows\Request\Verification`.                                     |
+|----------------------------------------|-----------------------------------------------------------------------------|
 
 Sending Requests
 ----------------
