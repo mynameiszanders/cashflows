@@ -60,6 +60,17 @@
         protected abstract function getAdditionalFields();
 
         /**
+         * Get API Segment
+         *
+         * @access public
+         * @return string
+         */
+        protected function getApiSegment()
+        {
+            return 'remote';
+        }
+
+        /**
          * Set Multiple Attributes
          *
          * @access public
@@ -114,7 +125,10 @@
             if(!$this->validate()) {
                 throw new ValidationException();
             }
-            Client::getTransport()->send(Client::BASEAPI, $this->collection->toArray() + $this->getAdditionalFields());
+            Client::getTransport()->send(
+                Client::BASEAPI . $this->getApiSegment(),
+                $this->collection->toArray() + $this->getAdditionalFields()
+            );
         }
 
     }
