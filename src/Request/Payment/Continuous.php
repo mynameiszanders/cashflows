@@ -16,6 +16,7 @@
          */
         protected function getFieldDefinitions()
         {
+            $ipAddress = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null;
             return [
                 'auth_id'       => ['Authorisation ID',                                 V::notEmpty()->numeric()                                                       ],
                 'auth_pass'     => ['Authorisation Password',                           V::notEmpty()->string()                                                        ],
@@ -24,7 +25,7 @@
                 'cust_address'  => ['Customer Address',                                 V::notEmpty()->string()                                                        ],
                 'cust_postcode' => ['Customer Postcode',                                V::notEmpty()->string()                                                        ],
                 'cust_country'  => ['Customer Country',                                 V::notEmpty()->string() ->countryCode()                                        ],
-                'cust_ip'       => ['Customer IP Address',                              V::notEmpty()->string() ->ip(),                        $_SERVER['REMOTE_ADDR'] ],
+                'cust_ip'       => ['Customer IP Address',                              V::notEmpty()->string() ->ip(),                                     $ipAddress ],
                 'cust_email'    => ['Customer Email Address',                           V::notEmpty()->string() ->email()                                              ],
                 'cust_tel'      => ['Customer Telephone Number',                        V::notEmpty()->string() ->phone()                                              ],
                 'tran_ref'      => ['Transaction Reference',                            V::notEmpty()->string()                                                        ],
