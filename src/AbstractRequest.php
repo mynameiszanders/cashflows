@@ -5,6 +5,7 @@
     use Nosco\Cashflows\Field;
     use Nosco\Cashflows\FieldCollection;
     use Respect\Validation\Validator;
+    use Nosco\Cashflows\Exceptions\Validation as ValidationException;
 
     abstract class AbstractRequest
     {
@@ -123,7 +124,7 @@
         public function send()
         {
             if(!$this->validate()) {
-                throw new Validation();
+                throw new ValidationException;
             }
             Client::getTransport()->send(
                 Client::BASEAPI . $this->getApiSegment(),
