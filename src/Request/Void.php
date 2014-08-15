@@ -5,7 +5,7 @@
     use Nosco\Cashflows\AbstractRequest;
     use Respect\Validation\Validator as V;
 
-    class VoidTransaction extends AbstractRequest
+    class Void extends AbstractRequest
     {
 
         /**

@@ -142,7 +142,7 @@
          */
         public function voidRequest()
         {
-            $request = new Request\VoidTransaction;
+            $request = new Request\Void;
             return $this->applyAuthSettings($request);
         }
 
