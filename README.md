@@ -21,7 +21,6 @@ The available dedicated methods, and their corresponding request classes, are:
 |`voidRequest`                           | `Nosco\Cashflows\Request\Void`.                                             |
 |`refundRequest`                         | `Nosco\Cashflows\Request\Refund`.                                           |
 |`verificationRequest`                   | `Nosco\Cashflows\Request\Verification`.                                     |
-|----------------------------------------|-----------------------------------------------------------------------------|
 
 Sending Requests
 ----------------
