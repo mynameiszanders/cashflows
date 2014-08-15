@@ -35,17 +35,17 @@ Catching Errors
 
 The following is the Exception tree; only exception classes in leaf nodes are thrown, all others are for group-catching.
 
-- `Nosco\Cashflows\Exceptions\BaseException`
-  - `Nosco\Cashflows\Exceptions\ValidationException`
-  - `Nosco\Cashflows\Exceptions\TransportException`
-  - `Nosco\Cashflows\Exceptions\CashflowsSystemException`
-  - `Nosco\Cashflows\Exceptions\ResponseException`
-    - `Nosco\Cashflows\Exceptions\Response\InvalidResponseException`
-    - `Nosco\Cashflows\Exceptions\Response\NotAuthorisedException`
-      - `Nosco\Cashflows\Exceptions\Response\NotAuthorised\BlockedException`
-      - `Nosco\Cashflows\Exceptions\Response\NotAuthorised\CancelledException`
-      - `Nosco\Cashflows\Exceptions\Response\NotAuthorised\DeclinedException`
-      - `Nosco\Cashflows\Exceptions\Response\NotAuthorised\InvalidRequestException`
+- `Nosco\Cashflows\Exceptions\BaseException` is a group-catcher (not thrown).
+  - `Nosco\Cashflows\Exceptions\ValidationException` is thrown.
+  - `Nosco\Cashflows\Exceptions\TransportException` is thrown.
+  - `Nosco\Cashflows\Exceptions\CashflowsSystemException` is thrown.
+  - `Nosco\Cashflows\Exceptions\ResponseException` is a group-catcher (not thrown).
+    - `Nosco\Cashflows\Exceptions\Response\InvalidResponseException` is thrown.
+    - `Nosco\Cashflows\Exceptions\Response\NotAuthorisedException` is a group-catcher (not thrown).
+      - `Nosco\Cashflows\Exceptions\Response\NotAuthorised\BlockedException` is thrown.
+      - `Nosco\Cashflows\Exceptions\Response\NotAuthorised\CancelledException` is thrown.
+      - `Nosco\Cashflows\Exceptions\Response\NotAuthorised\DeclinedException` is thrown.
+      - `Nosco\Cashflows\Exceptions\Response\NotAuthorised\InvalidRequestException` is thrown.
 
 Example Usage
 -------------
