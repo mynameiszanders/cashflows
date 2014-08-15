@@ -43,7 +43,7 @@
                 $response = self::$guzzle->send($post);
             }
             catch(GuzzleHttp\Exception\TransferException $e) {
-                throw new TransportException('The transport adapter encountered an error: "' . $e->getMessage() . '"', $e->getCode(), $e);
+                throw new Exceptions\Transport('The transport adapter encountered an error: "' . $e->getMessage() . '"', $e->getCode(), $e);
             }
             $responseParts = preg_split('/\\s*\\|\\s*/', trim((string) $response->getBody()), -1, PREG_SPLIT_NO_EMPTY);
             if(is_array($responseParts) && count($responseParts) === 5) {
@@ -51,23 +51,23 @@
                     case 'A':
                         break;
                     case 'B':
-                        throw new Exceptions\Response\NotAuthorised\BlockedException($responseParts[1], $responseParts[2], $responseParts[3], $responseParts[4]);
+                        throw new Exceptions\Response\NotAuthorised\Blocked($responseParts[1], $responseParts[2], $responseParts[3], $responseParts[4]);
                         break;
                     case 'C':
-                        throw new Exceptions\Response\NotAuthorised\CancelledException($responseParts[1], $responseParts[2], $responseParts[3], $responseParts[4]);
+                        throw new Exceptions\Response\NotAuthorised\Cancelled($responseParts[1], $responseParts[2], $responseParts[3], $responseParts[4]);
                         break;
                     case 'D':
                     case 'R':
-                        throw new Exceptions\Response\NotAuthorised\DeclinedException($responseParts[1], $responseParts[2], $responseParts[3], $responseParts[4]);
+                        throw new Exceptions\Response\NotAuthorised\Declined($responseParts[1], $responseParts[2], $responseParts[3], $responseParts[4]);
                         break;
                     case 'V':
-                        throw new Exceptions\Response\NotAuthorised\InvalidRequestException($responseParts[1], $responseParts[2], $responseParts[3], $responseParts[4]);
+                        throw new Exceptions\Response\NotAuthorised\InvalidRequest($responseParts[1], $responseParts[2], $responseParts[3], $responseParts[4]);
                         break;
                     case 'S':
-                        throw new Exceptions\CashflowsSystemException;
+                        throw new Exceptions\System;
                         break;
                     default:
-                        throw new Exceptions\Response\InvalidResponseException(
+                        throw new Exceptions\Response\InvalidResponse(
                             'An unrecongnised response code was returned from Cashflows.',
                             $response->getStatusCode(),
                             (string) $response->getBody()
@@ -77,7 +77,7 @@
                 return new AuthorisedResponse($responseParts[1], $responseParts[2], $responseParts[3]);
             }
             else {
-                throw new Exceptions\Response\InvalidResponseException(
+                throw new Exceptions\Response\InvalidResponse(
                     'An unrecognised response format was returned from Cashflows.',
                     $response->getStatusCode(),
                     (string) $response->getBody()
