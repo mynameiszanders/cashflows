@@ -2,6 +2,6 @@
 
     namespace Nosco\Cashflows\Exceptions;
 
-    class Exception extends \Exception
+    class BaseException extends \Exception
     {
     }
