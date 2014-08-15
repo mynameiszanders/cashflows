@@ -123,7 +123,7 @@
         public function send()
         {
             if(!$this->validate()) {
-                throw new ValidationException();
+                throw new Validation();
             }
             Client::getTransport()->send(
                 Client::BASEAPI . $this->getApiSegment(),
