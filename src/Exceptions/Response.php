@@ -2,6 +2,6 @@
 
     namespace Nosco\Cashflows\Exceptions;
 
-    class TransportException extends BaseException
+    class Response extends BaseException
     {
     }

@@ -2,6 +2,6 @@
 
     namespace Nosco\Cashflows\Exceptions;
 
-    class CashflowsSystemException extends BaseException
+    class Validation extends BaseException
     {
     }

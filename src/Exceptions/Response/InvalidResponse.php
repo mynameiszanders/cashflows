@@ -2,9 +2,9 @@
 
     namespace Nosco\Cashflows\Exceptions\Response;
 
-    use Nosco\Cashflows\Exceptions\ResponseException;
+    use Nosco\Cashflows\Exceptions\Response as ResponseException;
 
-    class InvalidResponseException extends ResponseException
+    class InvalidResponse extends ResponseException
     {
 
         /**

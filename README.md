@@ -39,16 +39,16 @@ The following is the Exception tree; only exception classes in leaf nodes are th
 All exceptions are prefixed with the namespace `Nosco\Cashflows\Exceptions`.
 
 - `BaseException` **never** thrown (group-catch only).
-  - `ValidationException`.
-  - `TransportException`.
-  - `CashflowsSystemException`.
-  - `ResponseException` **never** thrown (group-catch only).
-    - `Response\InvalidResponseException`.
-    - `Response\NotAuthorisedException` **never** thrown (group-catch only).
-      - `Response\NotAuthorised\BlockedException`.
-      - `Response\NotAuthorised\CancelledException`.
-      - `Response\NotAuthorised\DeclinedException`.
-      - `Response\NotAuthorised\InvalidRequestException`.
+  - `Validation`.
+  - `Transport`.
+  - `CashflowsSystem`.
+  - `Response` **never** thrown (group-catch only).
+    - `Response\InvalidResponse`.
+    - `Response\NotAuthorised` **never** thrown (group-catch only).
+      - `Response\NotAuthorised\Blocked`.
+      - `Response\NotAuthorised\Cancelled`.
+      - `Response\NotAuthorised\Declined`.
+      - `Response\NotAuthorised\InvalidRequest`.
 
 Example Usage
 -------------
@@ -82,20 +82,20 @@ Example Usage
     }
 
     // Catch any errors that occur before or during the API call to Cashflows (request exceptions):
-    catch(Error\ValidationException $e) {}
-    catch(Error\TransportException $e) {}
+    catch(Error\Validation $e) {}
+    catch(Error\Transport $e) {}
 
     // Catch any errors that occur after the API call to Cashflows (response exceptions):
     # You can use the Error\Response\NotAuthorisedException to cover the first four, or Error\ResponseException to
     # cover all five.
-    catch(Error\Response\NotAuthorised\BlockedException $e) {}
-    catch(Error\Response\NotAuthorised\CancelledException $e) {}
-    catch(Error\Response\NotAuthorised\DeclinedException $e) {}
-    catch(Error\Response\NotAuthorised\InvalidRequestException $e) {}
-    catch(Error\Response\InvalidResponseException $e) {}
+    catch(Error\Response\NotAuthorised\Blocked $e) {}
+    catch(Error\Response\NotAuthorised\Cancelled $e) {}
+    catch(Error\Response\NotAuthorised\Declined $e) {}
+    catch(Error\Response\NotAuthorised\InvalidRequest $e) {}
+    catch(Error\Response\InvalidResponse $e) {}
 
     // Catch any errors that Cashflows had:
-    catch(Error\CashflowsSystemException $e) {}
+    catch(Error\System $e) {}
 
     // Catch any other errors that happened within the library during the API call:
     # You can just use this catch block to catch everything, without any of the above catch blocks.

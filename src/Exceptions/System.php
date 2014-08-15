@@ -2,6 +2,6 @@
 
     namespace Nosco\Cashflows\Exceptions;
 
-    class ResponseException extends BaseException
+    class System extends BaseException
     {
     }
