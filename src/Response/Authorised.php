@@ -8,12 +8,6 @@
     {
 
         /**
-         * @access protected
-         * @var string $message
-         */
-        protected $message = 'Authorised';
-
-        /**
          * Constructor
          *
          * @access public
@@ -21,7 +15,7 @@
          */
         public function __construct($transactionId, $checks, $authCode)
         {
-            parent::__construct($transactionId, $checks, $authCode, $this->message);
+            parent::__construct($transactionId, $checks, $authCode, $message);
         }
 
     }
